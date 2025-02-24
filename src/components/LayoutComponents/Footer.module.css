@@ -1,0 +1,34 @@
+.main_footer{
+    width:100%;
+    margin-top:30px;
+    padding:3em 0 3em 0;
+    text-align: center;
+    font-weight: bold;
+    color:white;
+    background-color:#10110d;
+    clear:both;
+}
+.goto_top{
+    margin-bottom: 30px;
+}
+.name, .copyright{
+    font-size:14px;
+    margin:10px 0;
+}
+.copyright{
+    margin-top:30px;
+}
+.main_footer a {
+    color:white;
+    text-decoration: none;
+}
+.icon-container{
+    margin-top:30px;
+}
+.icon_link {
+    margin:0 20px;
+    font-size:30px;
+}
+.icon:hover{
+    color:#ff6b6b;
+}
