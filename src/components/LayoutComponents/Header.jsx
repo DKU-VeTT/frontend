@@ -30,7 +30,7 @@ const Header = () => {
   };
 
   const openAdminPage = () => {
-    window.open('http://localhost:9000/admin/login', '_blank', 'noopener,noreferrer');
+    window.open('http://localhost:9000/admin', '_blank', 'noopener,noreferrer');
   };
 
   const logoutHandler = async () => {

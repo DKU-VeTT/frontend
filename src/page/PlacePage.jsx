@@ -69,23 +69,23 @@ const PlacePage = () => {
         <>
             <Header/>
             <div className={classes.place_container}>
-            <h1>Place Page</h1>
+            <h1 className={classes.place_header}>Place Page</h1>
             <div className={classes.formsAndButtonsContainer}>
                 <div className={classes.formsContainer}>
                     <KeywordForm />
                     <FilterForm />
                 </div>
                 <div className={classes.buttonsContainer}>
-                    <button onClick={getAllCategoriesHandler}>1. What Categories?</button>
-                    <button onClick={getAllPlacesHandler}>2. All Places</button>
-                    <button onClick={getPlacesByCategoryHandler}>3. Category Places</button>
-                    <button onClick={getOpenPlacesByCategoryHandler}>4. Get Open Places By Category</button>
-                    <button onClick={getOpenPlacesByCategoryAndDistHandler}>5. Get Open Places By Category And Sorting By Coordinate</button>
-                    <button onClick={getPlacesByCategoryAndCooridinateDistHandler}>6. Get Places By Category And Sorting By Coordinate</button>
-                    <button onClick={getPlacesByCategoryAndAddressDistHandler}>7. Get Places By Category And Sorting By Address</button>
-                    <button onClick={getPlacesByKeywordHandler}>8. Get Places By Keyword</button>
-                    <button onClick={convertToCoordinateHandler}>9. Get Coordinate</button>
-                    <button onClick={getRouteHandler}>10. Get RouteInfo</button>
+                    <button className={classes.button} onClick={getAllCategoriesHandler}>1. What Categories?</button>
+                    <button className={classes.button} onClick={getAllPlacesHandler}>2. All Places</button>
+                    <button className={classes.button} onClick={getPlacesByCategoryHandler}>3. Category Places</button>
+                    <button className={classes.button} onClick={getOpenPlacesByCategoryHandler}>4. Get Open Places By Category</button>
+                    <button className={classes.button} onClick={getOpenPlacesByCategoryAndDistHandler}>5. Get Open Places By Category And Sorting By Coordinate</button>
+                    <button className={classes.button} onClick={getPlacesByCategoryAndCooridinateDistHandler}>6. Get Places By Category And Sorting By Coordinate</button>
+                    <button className={classes.button} onClick={getPlacesByCategoryAndAddressDistHandler}>7. Get Places By Category And Sorting By Address</button>
+                    <button className={classes.button} onClick={getPlacesByKeywordHandler}>8. Get Places By Keyword</button>
+                    <button className={classes.button} onClick={convertToCoordinateHandler}>9. Get Coordinate</button>
+                    <button className={classes.button} onClick={getRouteHandler}>10. Get RouteInfo</button>
                     </div>
                 </div>
             </div>
