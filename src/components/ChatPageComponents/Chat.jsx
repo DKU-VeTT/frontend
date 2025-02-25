@@ -121,7 +121,7 @@ const Chat = (props) => {
                     const newMessageBody = JSON.parse(message.body);
                     setMessages((prevMessages) => {
                         const date = new Date(newMessageBody.time);
-                        const formattedDate = date.toISOString().split("T")[0];
+                        const formattedDate = date.toLocaleDateString().split('T')[0];
                         const dayOfWeek = date.toLocaleDateString("ko-KR", { weekday: "long" });
                         const newMessageDate = `${formattedDate} ${dayOfWeek}`;
                     
