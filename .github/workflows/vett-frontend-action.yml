@@ -21,7 +21,7 @@ jobs:
           project: okc0202/nahc
           stage: main
           yaml: |
-            name: frontend
+            name: vett-frontend
             app: web
             options:
               nodeversion: "22"
