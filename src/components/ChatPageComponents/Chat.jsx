@@ -175,7 +175,7 @@ const Chat = (props) => {
     const groupMessagesByDate = (messages) => {
         return messages.reduce((acc, message) => {
             const date = new Date(message.time);
-            const formattedDate = date.toISOString().split('T')[0];
+            const formattedDate = date.toLocaleDateString().split('T')[0];
             const dayOfWeek = date.toLocaleDateString('ko-KR', { weekday: 'long' });
             const dateKey = `${formattedDate} ${dayOfWeek}`; 
     
