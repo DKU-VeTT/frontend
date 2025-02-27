@@ -63,7 +63,17 @@ const FindIdInput = (props) => {
             if (findIdResponseData.success){
                 setTimeout(() => {
                     setChecking((prev) => ({ ...prev, ["formData"]: false }));
-                    setResultMessage({ isSubmit : true, userId : findIdResponseData.data });
+                    const transformedIdData = findIdResponseData.data.map(id => {
+                        if (id.startsWith("kakao_")) {
+                          return "카카오 로그인 사용 중";
+                        } else if (id.startsWith("naver_")) {
+                          return "네이버 로그인 사용 중";
+                        } else if (id.startsWith("google_")) {
+                          return "구글 로그인 사용 중";
+                        }
+                        return id;
+                    });
+                    setResultMessage({ isSubmit : true, userId : transformedIdData });
                 }, 1000)
             }else{
                 setChecking((prev) => ({ ...prev, ["formData"]: false }));

@@ -2,9 +2,11 @@ import axios from "axios";
 
 const apiClient = axios.create(
     {
-        baseURL : 'http://localhost:9000/auth'
+        baseURL : 'http://localhost:9000/auth',
+        withCredentials: true,
     }
 )
+
 export const checkDuplicateUserIdService = async (userId) => {
     try{
         const checkDuplicateResponse = await apiClient.get(`/identity/is-duplicate/${userId}`);
@@ -13,6 +15,7 @@ export const checkDuplicateUserIdService = async (userId) => {
         return error.response.data;
     }
 }
+
 export const signupService = async (signupRequest) => {
     try {
         const signupResponse = await apiClient.post('/identity/sign-up', signupRequest);
@@ -21,6 +24,7 @@ export const signupService = async (signupRequest) => {
         return error.response.data;
     }
 };
+
 export const signinService = async (signinRequest) => {
     try {
         const signinResponse = await apiClient.post('/identity/sign-in', signinRequest);
@@ -29,6 +33,16 @@ export const signinService = async (signinRequest) => {
         return error.response.data;
     }
 };
+
+export const socialLoginService = async (socialSignInRequest) => {
+    try {
+        const socialLoginResponse = await apiClient.post('/identity/social', socialSignInRequest);
+        return socialLoginResponse.data;
+    } catch (error) {
+        return error.response.data;
+    }
+};
+
 export const findIdService = async (findIdRequest) => {
     try{
         const findIdResponse = await apiClient.post("/identity/find-id",findIdRequest);
@@ -37,6 +51,7 @@ export const findIdService = async (findIdRequest) => {
         return error.response.data;
     }
 };
+
 export const sendVerifyCodeService = async (userId) => {
     try{
         const sendVerifyCodeResponse = await apiClient.post(`/identity/verify-code/${userId}`);
@@ -45,6 +60,7 @@ export const sendVerifyCodeService = async (userId) => {
         return error.response.data;
     }
 };
+
 export const isVerifyCodeService = async (verifyCodeRequest) => {
     try{
         const isVerifyResponse = await apiClient.post('/identity/is-verify',verifyCodeRequest);
@@ -53,6 +69,7 @@ export const isVerifyCodeService = async (verifyCodeRequest) => {
         return error.response.data;
     }
 };
+
 export const changePasswordService = async (passwordChangeRequest) => {
     try{
         const changePasswordResponse = await apiClient.patch('/identity/password',passwordChangeRequest);
@@ -61,6 +78,7 @@ export const changePasswordService = async (passwordChangeRequest) => {
         return error.response.data;
     }
 };
+
 export const reIssueTokenService = async (refreshToken) => {
     try{
         const reissueTokenResponse = await apiClient.post("/identity/reissue", refreshToken);

@@ -5,6 +5,8 @@ import ChattingPage from './page/ChattingPage';
 import MainPage from './page/MainPage';
 import { ToastContainer } from "react-toastify";
 import AuthPage from './page/AuthPage';
+import SocialKakao from './components/AuthPageComponents/SocialKakao';
+import SocialNaver from './components/AuthPageComponents/SocialNaver';
 import PlacePage from './page/PlacePage';
 import LoginProvider from './store/LoginProvider';
 import ProtectedRoute from './store/ProtectedRoute';
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
         <MainPage />
       </ProtectedRoute>
     ),
+  },
+  {
+    path : '/oauth/kakao',
+    element : <SocialKakao/>
+  },
+  {
+    path : '/oauth/naver',
+    element : <SocialNaver/>
   },
   {
     path : '/auth',
