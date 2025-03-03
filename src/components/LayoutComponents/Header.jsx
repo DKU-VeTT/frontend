@@ -30,7 +30,7 @@ const Header = () => {
   };
 
   const openAdminPage = () => {
-    window.open('http://localhost:9000/admin', '_blank', 'noopener,noreferrer');
+    window.open('https://port-0-vett-admin-ss7z32llwmafmaz.sel5.cloudtype.app/admin', '_blank', 'noopener,noreferrer');
   };
 
   const logoutHandler = async () => {
