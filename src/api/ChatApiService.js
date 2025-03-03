@@ -5,6 +5,10 @@ import { reIssueTokenService } from "./AuthService";
 const apiClient = axios.create({
   baseURL: 'https://mongrel-wondrous-cheetah.ngrok-free.app/chat',
   withCredentials: true,
+  headers: {
+    'Content-Type': `application/json`,
+    'ngrok-skip-browser-warning': '9000',
+  },
 });
 
 apiClient.interceptors.request.use(

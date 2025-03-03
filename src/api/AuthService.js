@@ -2,8 +2,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const apiClient = axios.create({
-        baseURL : 'https://mongrel-wondrous-cheetah.ngrok-free.app/auth',
-        withCredentials: true,
+    baseURL : 'https://mongrel-wondrous-cheetah.ngrok-free.app/auth',
+    withCredentials: true,
+    headers: {
+        'Content-Type': `application/json`,
+        'ngrok-skip-browser-warning': '9000',
+    },
 })
 
 export const checkDuplicateUserIdService = async (userId) => {
