@@ -18,10 +18,10 @@ apiClient.interceptors.request.use(
     (error) => {
       return Promise.reject(error);
     }
-  );
+);
   
-  apiClient.interceptors.response.use(
-    (response) => response,
+apiClient.interceptors.response.use(
+  (response) => response,
     async (error) => {
       if (error.response && error.response.headers['token-error-message']) {
         const tokenErrorMessage = error.response.headers['token-error-message'];
@@ -79,7 +79,19 @@ export const getAllPlacesService = async () => {
         const placeResponse = await apiClient.get('/all');
         return await placeResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 // 모든 장소 카테고리 
@@ -89,8 +101,19 @@ export const getAllCategoriesService = async () => {
         const categoriesResponse = await apiClient.get("/categories")
         return await categoriesResponse.data;
     }catch(error){
-        console.log(error.response);
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -100,7 +123,19 @@ export const getPlacesByCategoryService = async (category) => {
         const placeResponse = await apiClient.get(`/category?category=${category}`);
         return await placeResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -111,7 +146,19 @@ export const getOpenPlacesByCategoryAndDistService = async (category, coordinate
         const placeResponse = await apiClient.post(`/open/dist/${category}`,coordinateRequest);
         return await placeResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -121,7 +168,19 @@ export const getPlacesByCategoryAndCooridinateDistService = async (category,coor
         const placeResponse = await apiClient.post(`/dist/${category}`,coordinateRequest);
         return await placeResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 // 거리순으로 데이터 정렬 ( 카테고리 + 주소 필요 ) 
@@ -130,7 +189,19 @@ export const getPlacesByCategoryAndAddressDistService = async (category, address
         const placeResponse = await apiClient.post(`/dist/address/${category}`,addressRequest);
         return await placeResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 // 카테고리별 현재 운영중인 장소 데이터 
@@ -139,7 +210,19 @@ export const getOpenPlacesByCategoryService = async (category) => {
         const placeResponse = await apiClient.get(`/open/${category}`);
         return await placeResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 // 키워드 검색을 통한 장소 데이터 
@@ -148,7 +231,19 @@ export const getPlacesByKeywordService = async (keyword) => {
         const placeResponse = await apiClient.get(`/search/${keyword}`);
         return await placeResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 // 여러 필터를 통한 장소 데이터
@@ -157,6 +252,18 @@ export const getPlacesByFilterService = async (filterRequest) => {
         const placeResponse = await apiClient.post('/filter', filterRequest);
         return await placeResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };

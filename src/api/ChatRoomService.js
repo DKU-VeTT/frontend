@@ -80,7 +80,19 @@ export const createRoomService = async (createChatRoomRequest) => {
         const createRoomResponse = await apiClient.post('/room',createChatRoomRequest);
         return await createRoomResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -90,7 +102,19 @@ export const getAllChatRoomsService = async () => {
         const chatRoomsData = await apiClient.get('/rooms');
         return await chatRoomsData.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 }
 
@@ -100,7 +124,19 @@ export const getMyChatRootService = async (memberId) => {
         const myChatRoomsData = await apiClient.get(`/rooms/${memberId}`);
         return await myChatRoomsData.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -110,7 +146,19 @@ export const registerNewMemberToChatRoomService = async (roomId,memberId) => {
         const registerResponse = await apiClient.post(`/room/${roomId}/${memberId}`);
         return await registerResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 }
 export const unregisterMemberToChatRoomService = async (roomId,memberId) => {
@@ -119,6 +167,18 @@ export const unregisterMemberToChatRoomService = async (roomId,memberId) => {
         const unregisterResponse = await apiClient.delete(`/room/${roomId}/${memberId}`);
         return await unregisterResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };

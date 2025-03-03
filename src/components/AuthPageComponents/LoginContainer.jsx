@@ -48,7 +48,8 @@ const LoginContainer = () => {
             navigate('/')
         }else{
             const message = signinResponseData.message;
-            if (message === "There is no member matching the provided username and password." || "Not found member with your primary key or userId"){
+            if (message === "There is no member matching the provided username and password." || 
+                message === "Not found member with your primary key or userId"){
                 toast.error("일치하는 회원정보가 존재하지 않습니다.", {
                     position: "top-center",
                     autoClose: 2000,

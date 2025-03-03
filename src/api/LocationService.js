@@ -18,60 +18,60 @@ apiClient.interceptors.request.use(
     (error) => {
       return Promise.reject(error);
     }
-  );
+);
   
-  apiClient.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-      if (error.response && error.response.headers['token-error-message']) {
-        const tokenErrorMessage = error.response.headers['token-error-message'];
-        if (tokenErrorMessage === 'Token Expired') {
-          const refreshToken = localStorage.getItem('refreshToken');
-          const reissueTokenResponseData = await reIssueTokenService({ refreshToken });
-  
-          if (reissueTokenResponseData.success){
-              const newAccessToken = reissueTokenResponseData.data.accessToken;
-              const newRefreshToken = reissueTokenResponseData.data.refreshToken;
-              localStorage.setItem("accessToken", newAccessToken);
-              localStorage.setItem("refreshToken", newRefreshToken);
-              error.config.headers.Authorization = `Bearer ${newAccessToken}`;
-              return axios(error.config);
-  
-          }else{
-              toast.warning("로그인 시간이 만료되었습니다. \n 다시 로그인해주세요.", {
-                  position: "top-center",
-                  autoClose: 1000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: false,
-                  draggable: true,
-                  progress: undefined,
-              });
-              localStorage.removeItem("accessToken");
-              localStorage.removeItem("refreshToken"); 
-              setTimeout(() => {
-                  window.location.href = '/auth';
-              },2000)
-          }
-        } else {
-          toast.error("인증에 문제가 생겼습니다. \n 다시 로그인해주세요.", {
-              position: "top-center",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-          });
-          localStorage.removeItem("accessToken");
-          localStorage.removeItem("refreshToken"); 
-          setTimeout(() => {
-              window.location.href = '/auth';
-          },2000)
+apiClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response && error.response.headers['token-error-message']) {
+      const tokenErrorMessage = error.response.headers['token-error-message'];
+      if (tokenErrorMessage === 'Token Expired') {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const reissueTokenResponseData = await reIssueTokenService({ refreshToken });
+
+        if (reissueTokenResponseData.success){
+            const newAccessToken = reissueTokenResponseData.data.accessToken;
+            const newRefreshToken = reissueTokenResponseData.data.refreshToken;
+            localStorage.setItem("accessToken", newAccessToken);
+            localStorage.setItem("refreshToken", newRefreshToken);
+            error.config.headers.Authorization = `Bearer ${newAccessToken}`;
+            return axios(error.config);
+
+        }else{
+            toast.warning("로그인 시간이 만료되었습니다. \n 다시 로그인해주세요.", {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken"); 
+            setTimeout(() => {
+                window.location.href = '/auth';
+            },2000)
         }
+      } else {
+        toast.error("인증에 문제가 생겼습니다. \n 다시 로그인해주세요.", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+        });
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken"); 
+        setTimeout(() => {
+            window.location.href = '/auth';
+        },2000)
       }
-      return Promise.reject(error);
     }
+    return Promise.reject(error);
+  }
 );
 
 // 주소를 좌표 변환 ( 주소 입력 필요 )
@@ -81,7 +81,19 @@ export const convertAddressToCoordinateService = async (addressRequest) => {
         const coordinateResponse = await apiClient.post('/address-to-coordinate', addressRequest);
         return await coordinateResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -91,6 +103,18 @@ export const getRouteInfoService = async (locationRequest) => {
         const routeResponse = await apiClient.post('/route', locationRequest);
         return await routeResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };

@@ -31,6 +31,8 @@ const SocialKakao = () => {
                     localStorage.setItem('accessToken',accessToken);
                     localStorage.setItem('refreshToken',refreshToken);
                     navigate('/')
+                }else{
+                    navigate('/auth')
                 }
             } catch (error) {
                 toast.error("카카오 로그인에 실패하셨습니다. \n 다른 방법으로 로그인을 진행해주세요.", {

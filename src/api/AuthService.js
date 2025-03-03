@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const apiClient = axios.create(
     {
@@ -12,7 +13,19 @@ export const checkDuplicateUserIdService = async (userId) => {
         const checkDuplicateResponse = await apiClient.get(`/identity/is-duplicate/${userId}`);
         return await checkDuplicateResponse.data;
     }catch(error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 }
 
@@ -21,7 +34,19 @@ export const signupService = async (signupRequest) => {
         const signupResponse = await apiClient.post('/identity/sign-up', signupRequest);
         return await signupResponse.data;
     } catch (error) {
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -30,7 +55,19 @@ export const signinService = async (signinRequest) => {
         const signinResponse = await apiClient.post('/identity/sign-in', signinRequest);
         return signinResponse.data;
     } catch (error) {
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -39,7 +76,19 @@ export const socialLoginService = async (socialSignInRequest) => {
         const socialLoginResponse = await apiClient.post('/identity/social', socialSignInRequest);
         return socialLoginResponse.data;
     } catch (error) {
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return error;
     }
 };
 
@@ -48,7 +97,19 @@ export const findIdService = async (findIdRequest) => {
         const findIdResponse = await apiClient.post("/identity/find-id",findIdRequest);
         return await findIdResponse.data;
     }catch (error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -57,7 +118,19 @@ export const sendVerifyCodeService = async (userId) => {
         const sendVerifyCodeResponse = await apiClient.post(`/identity/verify-code/${userId}`);
         return await sendVerifyCodeResponse.data;
     }catch (error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -66,7 +139,19 @@ export const isVerifyCodeService = async (verifyCodeRequest) => {
         const isVerifyResponse = await apiClient.post('/identity/is-verify',verifyCodeRequest);
         return await isVerifyResponse.data;
     }catch (error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -75,7 +160,19 @@ export const changePasswordService = async (passwordChangeRequest) => {
         const changePasswordResponse = await apiClient.patch('/identity/password',passwordChangeRequest);
         return await changePasswordResponse.data;
     }catch (error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };
 
@@ -84,6 +181,18 @@ export const reIssueTokenService = async (refreshToken) => {
         const reissueTokenResponse = await apiClient.post("/identity/reissue", refreshToken);
         return await reissueTokenResponse.data;
     }catch (error){
-        return error.response.data;
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
     }
 };

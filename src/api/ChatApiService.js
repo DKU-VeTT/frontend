@@ -79,7 +79,19 @@ export const geminiChatService = async (question) => {
     const geminiChatResponse = await apiClient.post(`/gemini/test/question?question=${question}`);
     return await geminiChatResponse.data;
   } catch (error) {
-    return error.response.data;
+     if (error.response){
+          return error.response.data;
+      }
+      toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+      return { success : false }
   }
 };
 
@@ -88,6 +100,18 @@ export const getAllChatMessageService = async (roomId) => {
     const chatResponse = await apiClient.get(`/message/${roomId}`);
     return await chatResponse.data;
   } catch (error) {
-    return error.response.data;
+      if (error.response){
+          return error.response.data;
+      }
+      toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+      return { success : false }
   }
 };
