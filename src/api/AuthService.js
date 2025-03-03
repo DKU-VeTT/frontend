@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const apiClient = axios.create(
     {
-        baseURL : 'http://localhost:9000/auth',
+        baseURL : 'https://a411-59-13-67-70.ngrok-free.app/auth',
         withCredentials: true,
     }
 )
