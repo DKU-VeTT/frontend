@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { getPlacesByKeywordService } from '../../api/PlaceService';
 import classes from './KeywordForm.module.css';
 
+
 const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
