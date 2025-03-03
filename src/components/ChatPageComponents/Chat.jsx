@@ -109,7 +109,7 @@ const Chat = (props) => {
     };
 
     const connect = (roomId) => {
-        const socket = new WebSocket("ws://mongrel-wondrous-cheetah.ngrok-free.app/ws");
+        const socket = new WebSocket("https://mongrel-wondrous-cheetah.ngrok-free.app/ws");
         stompClient.current = new Client({
             webSocketFactory: () => socket,
             reconnectDelay: 5000,
