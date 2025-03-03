@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../LayoutComponents/Loading";
 
+
 const SocialNaver = () => {
 
     const code = new URL(window.location.href).searchParams.get("code");
