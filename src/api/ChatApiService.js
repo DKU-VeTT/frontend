@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { reIssueTokenService } from "./AuthService";
 
 const apiClient = axios.create({
-  baseURL: 'https://8d26-59-13-67-70.ngrok-free.app/chat',
+  baseURL: 'https://mongrel-wondrous-cheetah.ngrok-free.app/chat',
   withCredentials: true,
 });
 
