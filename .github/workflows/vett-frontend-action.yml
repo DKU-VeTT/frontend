@@ -20,14 +20,32 @@ jobs:
           token: ${{ secrets.CLOUDTYPE_TOKEN }}
           project: okc0202/nahc
           stage: main
-          yaml: |
+          yaml: >
             name: vett-frontend
+
             app: web
+
             options:
               nodeversion: "22"
               spa: true
-              buildenv: []
-              rewrites: []
+              buildenv:
+                - name: VITE_KAKAO_REST_API_KEY
+                  value: ${{ secrets.VITE_KAKAO_REST_API_KEY }}
+                - name: VITE_KAKAO_SECRET
+                  value: ${{ secrets.VITE_KAKAO_SECRET }}
+                - name: VITE_NAVER_REST_API_KEY
+                  value: ${{ secrets.VITE_NAVER_REST_API_KEY }}
+                - name: VITE_NAVER_SECRET
+                  value: ${{ secrets.VITE_NAVER_SECRET }}
+                - name: VITE_GOOGLE_CLIENT_ID
+                  value: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+                - name: VITE_GOOGLE_USERINFO_REQUEST_URL
+                  value: ${{ secrets.VITE_GOOGLE_USERINFO_REQUEST_URL }}
+              rewrites:
+                - path: /api/naver/token
+                  target: ${{ secrets.VITE_NAVER_TOKEN_TARGET }}
+                - path: /api/naver/user
+                  target: ${{ secrets.VITE_NAVER_USER_TARGET }}
             context:
               git:
                 url: git@github.com:${{ github.repository }}.git
