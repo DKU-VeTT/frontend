@@ -4,13 +4,15 @@ import { toast } from "react-toastify";
 const apiClient = axios.create({
     baseURL: window.location.hostname === 'localhost' 
     ? 'http://localhost:9000/auth' 
-    : `${import.meta.env.VETT_BACKEND_URL}/auth`,
+    : `${import.meta.env.VITE_VETT_BACKEND_URL}/auth`,
     withCredentials: true,
     headers: {
         'Content-Type': `application/json`,
         'ngrok-skip-browser-warning': '9000',
     },
 })
+
+console.log(apiClient.baseURL);
 
 export const checkDuplicateUserIdService = async (userId) => {
     try{

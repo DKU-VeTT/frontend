@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 const baseURL =  window.location.hostname === 'localhost' 
 ? 'ws://localhost:9000/ws' 
-: `${import.meta.env.VETT_BACKEND_URL}/ws`;
+: `${import.meta.env.VITE_VETT_BACKEND_URL}/ws`;
 
 const Chat = (props) => {
     

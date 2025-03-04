@@ -41,8 +41,8 @@ jobs:
                   value: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
                 - name: VITE_GOOGLE_USERINFO_REQUEST_URL
                   value: ${{ secrets.VITE_GOOGLE_USERINFO_REQUEST_URL }}
-                - name: VETT_BACKEND_URL
-                  value: ${{ secrets.VETT_BACKEND_URL }}
+                - name: VITE_VETT_BACKEND_URL
+                  value: ${{ secrets.VITE_VETT_BACKEND_URL }}
               rewrites:
                 - path: /api/naver/token
                   target: ${{ secrets.VITE_NAVER_TOKEN_TARGET }}
