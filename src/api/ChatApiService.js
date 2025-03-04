@@ -3,7 +3,9 @@ import { toast } from "react-toastify";
 import { reIssueTokenService } from "./AuthService";
 
 const apiClient = axios.create({
-  baseURL: 'https://mongrel-wondrous-cheetah.ngrok-free.app/chat',
+  baseURL: window.location.hostname === 'localhost' 
+  ? 'http://localhost:9000' 
+  : import.meta.env.VETT_BACKEND_URL,
   withCredentials: true,
   headers: {
     'Content-Type': `application/json`,

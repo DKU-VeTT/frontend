@@ -2,7 +2,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const apiClient = axios.create({
-    baseURL : 'https://mongrel-wondrous-cheetah.ngrok-free.app/auth',
+    baseURL: window.location.hostname === 'localhost' 
+    ? 'http://localhost:9000' 
+    : import.meta.env.VETT_BACKEND_URL,
     withCredentials: true,
     headers: {
         'Content-Type': `application/json`,
