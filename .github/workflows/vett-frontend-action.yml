@@ -43,6 +43,8 @@ jobs:
                   value: ${{ secrets.VITE_GOOGLE_USERINFO_REQUEST_URL }}
                 - name: VITE_VETT_BACKEND_URL
                   value: ${{ secrets.VITE_VETT_BACKEND_URL }}
+                - name: VITE_KAKAO_APP_KEY
+                  value: ${{ secrets.VITE_KAKAO_APP_KEY }}
               rewrites:
                 - path: /api/naver/token
                   target: ${{ secrets.VITE_NAVER_TOKEN_TARGET }}
