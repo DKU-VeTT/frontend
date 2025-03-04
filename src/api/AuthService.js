@@ -12,8 +12,6 @@ const apiClient = axios.create({
     },
 })
 
-console.log(apiClient.baseURL);
-
 export const checkDuplicateUserIdService = async (userId) => {
     try{
         const checkDuplicateResponse = await apiClient.get(`/identity/is-duplicate/${userId}`);
