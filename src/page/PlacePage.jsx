@@ -10,7 +10,6 @@ import classes from "./PlacePage.module.css";
 import FilterForm from '../components/PlacePageComponents/FilterForm';
 import KeywordForm from '../components/PlacePageComponents/KeywordForm';
 import PlaceMap from '../components/PlacePageComponents/PlaceMap';
-
 const myHomeCoordinate = { latitude: 37.2906870184418, longitude: 126.994990959844 };
 const dkCoordinate = {latitude: 37.3211938747541, longitude: 127.132535935195};
 const dkAddress = "경기도 용인시 수지구 죽전로 152";
