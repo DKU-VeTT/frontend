@@ -4,8 +4,8 @@ import { reIssueTokenService } from "./AuthService";
 
 const apiClient = axios.create({
   baseURL: window.location.hostname === 'localhost' 
-  ? 'http://localhost:9000' 
-  : import.meta.env.VETT_BACKEND_URL,
+  ? 'http://localhost:9000/auth/api/user' 
+  : `${import.meta.env.VETT_BACKEND_URL}/auth/api/user`,
     withCredentials: true,
     headers: {
       'Content-Type': `application/json`,

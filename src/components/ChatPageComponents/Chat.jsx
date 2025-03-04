@@ -10,6 +10,10 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
 
+const baseURL =  window.location.hostname === 'localhost' 
+? 'ws://localhost:9000/ws' 
+: `${import.meta.env.VETT_BACKEND_URL}/ws`;
+
 const Chat = (props) => {
     
     const loginCtx = useContext(loginContext);
@@ -109,7 +113,7 @@ const Chat = (props) => {
     };
 
     const connect = (roomId) => {
-        const socket = new WebSocket("https://mongrel-wondrous-cheetah.ngrok-free.app/ws");
+        const socket = new WebSocket(baseURL);
         stompClient.current = new Client({
             webSocketFactory: () => socket,
             reconnectDelay: 5000,
