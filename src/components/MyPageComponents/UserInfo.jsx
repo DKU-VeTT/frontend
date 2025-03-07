@@ -15,11 +15,39 @@ const UserInfo = () => {
     const loginCtx = useContext(loginContext);
 
     const [currentUserInfo, setCurrentUserInfo] = useState({});
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [agree, setAgree] = useState(false);
     const [formData, setFormData] = new useState({});
 
     const [errors, setErrors] = new useState({});
     const [touched, setTouched] = new useState({});
     const [checking, setChecking] = new useState({});
+
+    const deleteMemberHandler = () => {
+        setShowConfirm(true);
+    };
+
+    const confirmDelete = () => {
+        if (!agree) {
+            toast.warning("탈퇴 약관에 동의해주세요.", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return;
+        }
+        alert("회원탈퇴가 완료되었습니다.");
+        setShowConfirm(false);
+    };
+
+    const cancelDelete = () => {
+        setShowConfirm(false);
+        setAgree(false);
+    };
 
     const validateField = (name, value) => {
         switch (name) {
@@ -33,6 +61,7 @@ const UserInfo = () => {
                 return "";
         }
     };
+
     const handleFocus = (e) => {
         const { name } = e.target;
         setTouched({ ...touched, [name]: true });
@@ -258,7 +287,49 @@ const UserInfo = () => {
                 {formData["userId"] && (
                     <Link className={classes.edit_password_link} as={Link} to="/auth?type=4">Forget Password?</Link>
                 )}
+                <p 
+                    onClick={deleteMemberHandler}
+                    className={classes.delete_link}>회원 탈퇴</p>
             </div>
+            <AnimatePresence>
+                {showConfirm && (
+                    <div className={classes.modalOverlay}>
+                        <motion.div 
+                            className={classes.modalContent}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <h2>회원탈퇴 안내</h2>
+                            <p className={classes.noticeText}>
+                                회원탈퇴 시 모든 정보가 <span className={classes.highlight}>영구 삭제</span>되며, 
+                                <br/> 복구가 불가능합니다.<br />
+                                다시 가입하더라도 기존 데이터는 복원되지 않습니다.
+                            </p>
+                            
+                            <div className={classes.agreeSection}>
+                                <input 
+                                    type="checkbox" 
+                                    id="agree" 
+                                    checked={agree} 
+                                    onChange={() => setAgree(!agree)} 
+                                />
+                                <label htmlFor="agree">위 내용을 확인하였으며, 이에 동의합니다.</label>
+                            </div>
+
+                            <div className={classes.buttonGroup}>
+                                <motion.button 
+                                    whileHover={{ scale : 1.05 }}
+                                    className={classes.confirmButton} onClick={confirmDelete}>✅ 동의하고 탈퇴</motion.button>
+                                <motion.button 
+                                    whileHover={{ scale : 1.05 }}
+                                    className={classes.cancelButton} onClick={cancelDelete}>취소</motion.button>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </div>
        
     );
