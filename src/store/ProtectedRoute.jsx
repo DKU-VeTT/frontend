@@ -16,6 +16,7 @@ const ProtectedRoute = ({ children }) => {
     
     const saveLoginContextHandler = (token) => {
         const jsonToken = jwtDecode(token);
+        console.log(jsonToken);
         loginCtx.loginUser({
             name: jsonToken.name,
             userId: jsonToken.userId,

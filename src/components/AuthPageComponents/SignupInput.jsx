@@ -184,7 +184,7 @@ const SignupInput = (props) => {
                                     >
                                         {checking[key] ? "확인 중..." : "중복 확인"}
                                     </motion.button>
-                                )}
+                            )}
                         </div>
                         <AnimatePresence>
                             {touched[key] && errors[key] && (

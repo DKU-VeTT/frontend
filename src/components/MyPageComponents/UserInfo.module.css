@@ -1,4 +1,41 @@
-.auth_form {
+.userInfo_container{
+    display: flex;
+    justify-content: center;
+    margin:50px 0 100px 0;
+    font-family: "Noto Sans KR", sans-serif !important;
+    gap:50px;
+}
+.userInfo_container_header_text{
+    margin:auto;
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(66, 51, 182);
+    margin-bottom: 30px;
+}
+.container {
+    width:400px;
+    background: linear-gradient(135deg, #ffffff, #f6f0fc);
+    padding:30px;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    box-shadow: 0px 12px 35px rgba(120, 80, 200, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: "Noto Sans KR", sans-serif !important;
+}
+.not_edit_container{
+    color: #5c5a5a;
+    font-weight: bold;
+    gap: 15px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.user_form{
+    margin:auto;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -25,7 +62,7 @@
     font-weight:bold;
     font-family: "Noto Sans KR", sans-serif;
     box-sizing:border-box;
-    width:100%;
+    width:300px;
 }
 .input:focus {
     border-color: #0aba16;
@@ -50,7 +87,20 @@
     margin:10px 0;
     white-space: pre-line;
 }
-
+.social_email{
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    color:#5c5a5a;
+}
+.social_login_id{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    font-weight: bold;
+    margin:10px 0 0 0;
+}
 .submit_button {
     width:100%;
     margin:0 auto;
@@ -85,34 +135,10 @@
     background-color: #ccc;
     cursor: not-allowed;
 }
-.userId_list{
-    margin-bottom: 10px;
-}
-.userId_description {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #0aba16;
+.edit_password_link{
+    padding:20px 0;
+    margin:auto;
+    color:#453fb2;
     text-align: center;
+    text-decoration: none;
 }
-.userId_container {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.userId_item {
-    background-color: #9c97f2;
-    padding: 10px 15px;
-    border-radius: 8px;
-    color: white;
-    text-align: center;
-    margin: 5px 0; 
-    width: fit-content;
-    min-width: 100px;
-    max-width: 100%; 
-    word-break: break-word;
-}
-

@@ -73,6 +73,7 @@ const Header = () => {
               <Nav.Link as={Link} to="/chat">Chatting</Nav.Link>
               <Nav.Link as={Link} to="/place">Place</Nav.Link>
               <Nav.Link onClick={openAdminPage}>Admin</Nav.Link>
+              <Nav.Link as={Link} to="/me">Me</Nav.Link>
               <motion.img src={gptImg} whileHover={{ scale : 1.1 }} alt="GPT" className={classes.chat_icon} onClick={toggleChat} />
             </Nav>
           </Navbar.Collapse>

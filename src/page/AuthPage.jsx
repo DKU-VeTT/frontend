@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./AuthPage.module.css";
 import SignupContainer from "../components/AuthPageComponents/SignupContainer";
 import LoginContainer from "../components/AuthPageComponents/LoginContainer";
 import FindIdContainer from "../components/AuthPageComponents/FindIdContainer";
 import FindPasswordContainer from "../components/AuthPageComponents/FindPasswordContainer";
 import { motion } from "framer-motion";
+import { useLocation } from 'react-router-dom';
 
 const AuthPage = () => {
 
     const [type,setType] = new useState(1);
-    
+    const location = useLocation();
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search);
+        const typeFromQuery = urlParams.get('type');
+        setType(typeFromQuery ? parseInt(typeFromQuery) : 1);
+    }, [location]);
+
     const links = [
         { type: 1, label: "로그인" },
         { type: 2, label: "회원가입" },
