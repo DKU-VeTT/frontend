@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Client } from '@stomp/stompjs';
 import classes from "./Chat.module.css";
-import { getAllChatMessageService } from "../../api/ChatApiService";
+import { getAllChatMessageService, unreadClearService } from "../../api/ChatApiService";
 import { AnimatePresence, motion } from 'framer-motion';
 import { Send } from 'lucide-react';
-import loginContext from "../../store/login-context";
 import { ImExit } from "react-icons/im";
 import { FaCalendarAlt } from "react-icons/fa";
-import { FaUserCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const baseURL =  window.location.hostname === 'localhost' 
@@ -16,8 +14,7 @@ const baseURL =  window.location.hostname === 'localhost'
 
 const Chat = (props) => {
     
-    const loginCtx = useContext(loginContext);
-    const memberId = loginCtx.memberId;
+    const memberId = props.member.memberId;
 
     const [messages, setMessages] = useState([]);
     const stompClient = useRef(null);
@@ -54,8 +51,9 @@ const Chat = (props) => {
             }
         }
     };
+
     const exitChatHandler = () => {
-        props.unParticipateChatHandler();
+        props.onChatDisconnect();
         disconnect();
     };
 
@@ -113,6 +111,7 @@ const Chat = (props) => {
     };
 
     const connect = (roomId) => {
+
         const socket = new WebSocket(baseURL);
         stompClient.current = new Client({
             webSocketFactory: () => socket,
@@ -170,12 +169,14 @@ const Chat = (props) => {
         });
         stompClient.current.activate();
     };
+    
     const disconnect = () => {
         if (stompClient.current) {
             stompClient.current.deactivate();
             stompClient.current = null;
         }
     };
+
     const groupMessagesByDate = (messages) => {
         return messages.reduce((acc, message) => {
             const date = new Date(message.time);
@@ -191,16 +192,18 @@ const Chat = (props) => {
             return acc;
         }, {});
     };
+
     const parseTime = (timestamp) => {
         const chatTime = new Date(timestamp);
         return chatTime.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit", hour12: false });
     } 
+
     const fetchMessages = async (roomId) => {
         try {
             setIsLoading(true);
-            const messageResponseData = await getAllChatMessageService(roomId);
             
-            const groupedMessages = groupMessagesByDate(messageResponseData);
+            const messageResponse = await getAllChatMessageService(roomId);
+            const groupedMessages = groupMessagesByDate(messageResponse);
             const fetchMessageResponseData = Object.entries(groupedMessages).map(([date, messages]) => ({
                 date,
                 messages: messages.map(message => ({
@@ -208,22 +211,29 @@ const Chat = (props) => {
                     time: parseTime(message.time)
                 }))
             }));
+
             setMessages(fetchMessageResponseData);
+            
             setIsLoading(false);
         } catch (error) {
             console.error("Failed to fetch messages:", error);
         }
     };
+    
     useEffect(() => {
         if (!props.chatRoom.roomId) return;
         if (stompClient.current && stompClient.current.connected) {
-            console.log("WebSocket already connected, skipping reconnect.");
-            return;
+            if (currentRoom.roomId === props.chatRoom.roomId){
+                console.log("WebSocket already connected, skipping reconnect.");
+                return;
+            }
         }
         connect(props.chatRoom.roomId);
         fetchMessages(props.chatRoom.roomId);
         setCurrentRoom(props.chatRoom);
-        return () => {
+        return async () => {
+            const unreadCountClearResponse = await unreadClearService(
+                props.chatRoom.roomId,props.member.memberId);
             disconnect();
         };
     }, [props.chatRoom]);
@@ -298,8 +308,8 @@ const Chat = (props) => {
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.3 }}>
+                                        <p className={classes.name}>{message.name}님</p>
                                         <div className={classes.chat_display}>
-                                            <div className={classes.chat_person_icon}><FaUserCircle/></div>
                                             <div className={`${classes.chat_message} ${classes.chat_message_other}`}>
                                                 {message.content}
                                             </div>

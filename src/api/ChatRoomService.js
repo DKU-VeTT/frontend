@@ -15,7 +15,7 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
     (config) => {
-        const accessToken = localStorage.getItem('accessToken');
+        const accessToken = sessionStorage.getItem('accessToken');
         if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
         }
@@ -32,14 +32,14 @@ apiClient.interceptors.response.use(
       if (error.response && error.response.headers['token-error-message']) {
         const tokenErrorMessage = error.response.headers['token-error-message'];
         if (tokenErrorMessage === 'Token Expired') {
-          const refreshToken = localStorage.getItem('refreshToken');
+          const refreshToken = sessionStorage.getItem('refreshToken');
           const reissueTokenResponseData = await reIssueTokenService({ refreshToken });
   
           if (reissueTokenResponseData.success){
               const newAccessToken = reissueTokenResponseData.data.accessToken;
               const newRefreshToken = reissueTokenResponseData.data.refreshToken;
-              localStorage.setItem("accessToken", newAccessToken);
-              localStorage.setItem("refreshToken", newRefreshToken);
+              sessionStorage.setItem("accessToken", newAccessToken);
+              sessionStorage.setItem("refreshToken", newRefreshToken);
               error.config.headers.Authorization = `Bearer ${newAccessToken}`;
               return axios(error.config);
   
@@ -53,8 +53,8 @@ apiClient.interceptors.response.use(
                   draggable: true,
                   progress: undefined,
               });
-              localStorage.removeItem("accessToken");
-              localStorage.removeItem("refreshToken"); 
+              sessionStorage.removeItem("accessToken");
+              sessionStorage.removeItem("refreshToken"); 
               setTimeout(() => {
                   window.location.href = '/auth';
               },2000)
@@ -69,8 +69,8 @@ apiClient.interceptors.response.use(
               draggable: true,
               progress: undefined,
           });
-          localStorage.removeItem("accessToken");
-          localStorage.removeItem("refreshToken"); 
+          sessionStorage.removeItem("accessToken");
+          sessionStorage.removeItem("refreshToken"); 
           setTimeout(() => {
               window.location.href = '/auth';
           },2000)
@@ -101,6 +101,50 @@ export const createRoomService = async (createChatRoomRequest) => {
         return { success : false }
     }
 };
+
+export const isParticipateChatRoomService = async (roomId,memberId) => {
+
+    try{
+        const participateResponse = await apiClient.get(`/room/is-participate/${roomId}/${memberId}`);
+        return await participateResponse.data;
+    }catch(error){
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
+    }
+}
+
+export const getChatRoomByKeywordService = async (keyword) => {
+
+    try{
+        const chatRoomResponse = await apiClient.get(`/rooms/keyword/${keyword}`);
+        return await chatRoomResponse.data;
+    }catch(error){
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
+    }
+}
 
 export const getAllChatRoomsService = async () => {
    

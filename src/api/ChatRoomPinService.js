@@ -4,28 +4,28 @@ import { reIssueTokenService } from "./AuthService";
 
 const apiClient = axios.create({
   baseURL: window.location.hostname === 'localhost' 
-  ? 'http://localhost:9000/auth/api/user' 
-  : `${import.meta.env.VITE_VETT_BACKEND_URL}/auth/api/user`,
-    withCredentials: true,
-    headers: {
-      'Content-Type': `application/json`,
-      'ngrok-skip-browser-warning': '9000',
-    },
-})
+  ? 'http://localhost:9000/chat/pin' 
+  : `${import.meta.env.VITE_VETT_BACKEND_URL}/chat`,
+  withCredentials: true,
+  headers: {
+    'Content-Type': `application/json`,
+    'ngrok-skip-browser-warning': '9000',
+  },
+});
 
 apiClient.interceptors.request.use(
-    (config) => {
-      const accessToken = sessionStorage.getItem('accessToken');
-      if (accessToken) {
-        config.headers.Authorization = `Bearer ${accessToken}`;
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
+  (config) => {
+    const accessToken = sessionStorage.getItem('accessToken');
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
 );
-  
+
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -80,11 +80,11 @@ apiClient.interceptors.response.use(
   }
 );
 
-export const editMemberService = async (id, editMemberRequest) => {
-    
+export const isPinService = async (roomId,memberId) => {
+
     try{
-        const editMemberResponse = await apiClient.patch(`/${id}`,editMemberRequest);
-        return await editMemberResponse.data;
+        const isPinResponse = await apiClient.get(`/${roomId}/${memberId}`);
+        return await isPinResponse.data;
     }catch(error){
         if (error.response){
             return error.response.data;
@@ -102,31 +102,11 @@ export const editMemberService = async (id, editMemberRequest) => {
     }
 }
 
-export const deleteMemberService = async (id) => {
-  try{
-    const deleteMemberResponse = await apiClient.delete(`/${id}`);
-    return await deleteMemberResponse.data;
-  }catch(error){
-      if (error.response){
-          return error.response.data;
-      }
-      toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-      });
-      return { success : false }
-  }
-};
+export const addPinService = async (roomId,memberId) => {
 
-export const getMemberService = async (id) => {
     try{
-      const memberResponse = await apiClient.get(`/${id}`);
-      return await memberResponse.data;
+        const addPinResponse = await apiClient.post(`/${roomId}/${memberId}`);
+        return await addPinResponse.data;
     }catch(error){
         if (error.response){
             return error.response.data;
@@ -142,13 +122,13 @@ export const getMemberService = async (id) => {
         });
         return { success : false }
     }
-};
+}
 
-export const logoutService = async () => {
+export const deletePinService = async (pinId) => {
 
     try{
-        const logoutResponse = await apiClient.post('/logout');
-        return await logoutResponse.data;
+        const deletePinResponse = await apiClient.delete(`/${pinId}`);
+        return await deletePinResponse.data;
     }catch(error){
         if (error.response){
             return error.response.data;
@@ -164,4 +144,4 @@ export const logoutService = async () => {
         });
         return { success : false }
     }
-};
+}

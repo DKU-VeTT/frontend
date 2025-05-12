@@ -54,7 +54,7 @@
     color: rgb(66, 51, 182);
     margin-bottom: 30px;
 }
-.chatRoom_list{
+.chatRoom_list, .my_chatRoom_list{
     padding: 10px 30px;
     overflow-y: auto;
     overflow-x: hidden;

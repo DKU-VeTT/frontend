@@ -114,8 +114,8 @@ const UserInfo = () => {
                     const accessToken = tokenData.accessToken;
                     const refreshToken = tokenData.refreshToken;
 
-                    localStorage.setItem('accessToken',accessToken);
-                    localStorage.setItem('refreshToken',refreshToken);
+                    sessionStorage.setItem('accessToken',accessToken);
+                    sessionStorage.setItem('refreshToken',refreshToken);
                     fetchUserInfoHandler();
                     toast.success('회원정보를 성공적으로 변경하였습니다.', {
                         position: "top-center",

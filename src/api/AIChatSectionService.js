@@ -4,28 +4,28 @@ import { reIssueTokenService } from "./AuthService";
 
 const apiClient = axios.create({
   baseURL: window.location.hostname === 'localhost' 
-  ? 'http://localhost:9000/auth/api/user' 
-  : `${import.meta.env.VITE_VETT_BACKEND_URL}/auth/api/user`,
-    withCredentials: true,
-    headers: {
-      'Content-Type': `application/json`,
-      'ngrok-skip-browser-warning': '9000',
-    },
-})
+  ? 'http://localhost:9000/llm' 
+  : `${import.meta.env.VITE_VETT_BACKEND_URL}/llm`,
+  withCredentials: true,
+  headers: {
+    'Content-Type': `application/json`,
+    'ngrok-skip-browser-warning': '9000',
+  },
+});
 
 apiClient.interceptors.request.use(
-    (config) => {
-      const accessToken = sessionStorage.getItem('accessToken');
-      if (accessToken) {
-        config.headers.Authorization = `Bearer ${accessToken}`;
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
+  (config) => {
+    const accessToken = sessionStorage.getItem('accessToken');
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
 );
-  
+
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -80,11 +80,11 @@ apiClient.interceptors.response.use(
   }
 );
 
-export const editMemberService = async (id, editMemberRequest) => {
+export const getAllChatSectionsService = async (memberId) => {
     
     try{
-        const editMemberResponse = await apiClient.patch(`/${id}`,editMemberRequest);
-        return await editMemberResponse.data;
+        const chatSectionsResponse = await apiClient.get(`/chat-sections/${memberId}`);
+        return await chatSectionsResponse.data;
     }catch(error){
         if (error.response){
             return error.response.data;
@@ -102,10 +102,33 @@ export const editMemberService = async (id, editMemberRequest) => {
     }
 }
 
-export const deleteMemberService = async (id) => {
+export const createChatSectionService = async (memberId,title) => {
+
+    try{
+        const createSectionsResponse = await apiClient.post(`/chat-section/${memberId}/${title}`);
+        return await createSectionsResponse.data;
+    }catch(error){
+        if (error.response){
+            return error.response.data;
+        }
+        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        return { success : false }
+    }
+};
+
+export const deleteChatSectionService = async (chatSectionId) => {
+
   try{
-    const deleteMemberResponse = await apiClient.delete(`/${id}`);
-    return await deleteMemberResponse.data;
+      const deleteSectionsResponse = await apiClient.delete(`/chat-section/${chatSectionId}`);
+      return await deleteSectionsResponse.data;
   }catch(error){
       if (error.response){
           return error.response.data;
@@ -123,45 +146,24 @@ export const deleteMemberService = async (id) => {
   }
 };
 
-export const getMemberService = async (id) => {
-    try{
-      const memberResponse = await apiClient.get(`/${id}`);
-      return await memberResponse.data;
-    }catch(error){
-        if (error.response){
-            return error.response.data;
-        }
-        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-        return { success : false }
-    }
-};
+export const editChatSectionService = async (chatSectionId, title) => {
 
-export const logoutService = async () => {
-
-    try{
-        const logoutResponse = await apiClient.post('/logout');
-        return await logoutResponse.data;
-    }catch(error){
-        if (error.response){
-            return error.response.data;
-        }
-        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-        return { success : false }
-    }
+  try{
+      const editSectionResponse = await apiClient.patch(`/chat-section/${chatSectionId}/${title}`);
+      return await editSectionResponse.data;
+  }catch(error){
+      if (error.response){
+          return error.response.data;
+      }
+      toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+      return { success : false }
+  }
 };

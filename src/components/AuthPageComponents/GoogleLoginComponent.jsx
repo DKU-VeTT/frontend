@@ -37,8 +37,8 @@ const GoogleLoginButton = () => {
               const accessToken = tokenData.accessToken;
               const refreshToken = tokenData.refreshToken;
   
-              localStorage.setItem('accessToken',accessToken);
-              localStorage.setItem('refreshToken',refreshToken);
+              sessionStorage.setItem('accessToken',accessToken);
+              sessionStorage.setItem('refreshToken',refreshToken);
               navigate('/')
             }
           } catch (error) {

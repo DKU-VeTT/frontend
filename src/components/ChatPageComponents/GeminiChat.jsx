@@ -22,12 +22,14 @@ const GeminiChat = forwardRef((props, ref) => {
         setQuestion(event.target.value);
         adjustTextareaHeight();
     };
+
     const insertGeminiResponseHandler = (question, answer) => {
         setGeminiResponses(prev => [
             ...prev,
             { question, answer }
         ]);
     };
+    
     const questionSubmitHandler = async (event) => {
 
         if (event.key === 'Enter') {
@@ -55,6 +57,7 @@ const GeminiChat = forwardRef((props, ref) => {
     const insertResponseHandler = (question,answer) => {
         insertGeminiResponseHandler(question,answer);
     };
+
     const adjustTextareaHeight = () => {
         if (textareaRef.current) {
             textareaRef.current.style.height = "auto";

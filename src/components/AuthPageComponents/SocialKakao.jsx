@@ -28,8 +28,8 @@ const SocialKakao = () => {
                     const accessToken = tokenData.accessToken;
                     const refreshToken = tokenData.refreshToken;
         
-                    localStorage.setItem('accessToken',accessToken);
-                    localStorage.setItem('refreshToken',refreshToken);
+                    sessionStorage.setItem('accessToken',accessToken);
+                    sessionStorage.setItem('refreshToken',refreshToken);
                     navigate('/')
                 }else{
                     navigate('/auth')
