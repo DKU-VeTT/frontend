@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import classes from "./AIChat.module.css";
 import { getAllChatsService, saveNewChatService } from "../../api/AIChatService";
 import { motion, AnimatePresence } from "framer-motion";
 import logoImg from "../../assets/VeTT_Logo.png";
 
-const AIChat = () => {
 
-    const [isLoading,setIsLoading] = new useState(false);
+const baseURL =  window.location.hostname === 'localhost' 
+  ? 'http://localhost:9000/py/llm/chat' 
+  : `${import.meta.env.VITE_VETT_BACKEND_URL}/py/llm/chat`
+
+const AIChat = ({ section }) => {
+
+    const [isLoading,setIsLoading] = useState(false);
     const [previousMessages, setPreviousMessages] = useState([]);
     const [question,setQuestion] = new useState('');
     const textareaRef = useRef(null);
@@ -54,7 +59,7 @@ const AIChat = () => {
             setQuestion('');
             setPreviousMessages((prev) => [...prev, { question: currentQuestion, answer: "" }]);
     
-            const res = await fetch(`${import.meta.env.VITE_VETT_LLM_BACKEND_URL}/chat`, {
+            const res = await fetch(baseURL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
