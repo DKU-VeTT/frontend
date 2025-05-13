@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/LayoutComponents/Header';
 import Footer from '../components/LayoutComponents/Footer';
 import { getAllCategoriesService, getAllPlacesService, getPlacesByCategoryService,
-    getPlacesByCategoryAndCooridinateDistService, getPlacesByCategoryAndAddressDistService,
+    getPlacesByCategoryAndCooridinateDistService,
     getOpenPlacesByCategoryService,getPlacesByKeywordService,
     getOpenPlacesByCategoryAndDistService } from '../api/PlaceService';
 import { convertAddressToCoordinateService, getRouteInfoService } from '../api/LocationService';
