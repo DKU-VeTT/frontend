@@ -189,27 +189,7 @@ export const getPlacesByCategoryAndCooridinateDistService = async (category,coor
         return { success : false }
     }
 };
-// 거리순으로 데이터 정렬 ( 카테고리 + 주소 필요 ) 
-export const getPlacesByCategoryAndAddressDistService = async (category, addressRequest) => {
-    try{
-        const placeResponse = await apiClient.post(`/dist/address/${category}`,addressRequest);
-        return await placeResponse.data;
-    }catch(error){
-        if (error.response){
-            return error.response.data;
-        }
-        toast.error(`일시적 네트워크 오류입니다.\n 잠시 후 다시 시도해주세요.`, {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-        return { success : false }
-    }
-};
+
 // 카테고리별 현재 운영중인 장소 데이터 
 export const getOpenPlacesByCategoryService = async (category) => {
     try{

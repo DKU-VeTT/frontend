@@ -10,6 +10,7 @@ import classes from "./PlacePage.module.css";
 import FilterForm from '../components/PlacePageComponents/FilterForm';
 import KeywordForm from '../components/PlacePageComponents/KeywordForm';
 import PlaceMap from '../components/PlacePageComponents/PlaceMap';
+
 const myHomeCoordinate = { latitude: 37.2906870184418, longitude: 126.994990959844 };
 const dkCoordinate = {latitude: 37.3211938747541, longitude: 127.132535935195};
 const dkAddress = "경기도 용인시 수지구 죽전로 152";
@@ -57,10 +58,6 @@ const PlacePage = () => {
         const placeResponse = await getPlacesByCategoryAndCooridinateDistService("동물약국",dkCoordinate);
         console.log(placeResponse)
     };
-    const getPlacesByCategoryAndAddressDistHandler = async () => {
-        const placeResponse = await getPlacesByCategoryAndAddressDistService("동물약국", { address : dkAddress});
-        console.log(placeResponse)
-    };
     const getPlacesByKeywordHandler = async () => {
         const placeResponse = await getPlacesByKeywordService("약국");
         console.log(placeResponse);
@@ -99,11 +96,10 @@ const PlacePage = () => {
                         <button className={classes.button} onClick={getOpenPlacesByCategoryHandler}>4. Get Open Places By Category</button>
                         <button className={classes.button} onClick={getOpenPlacesByCategoryAndDistHandler}>5. Get Open Places By Category And Sorting By Coordinate</button>
                         <button className={classes.button} onClick={getPlacesByCategoryAndCooridinateDistHandler}>6. Get Places By Category And Sorting By Coordinate</button>
-                        <button className={classes.button} onClick={getPlacesByCategoryAndAddressDistHandler}>7. Get Places By Category And Sorting By Address</button>
-                        <button className={classes.button} onClick={getPlacesByKeywordHandler}>8. Get Places By Keyword</button>
-                        <button className={classes.button} onClick={convertToCoordinateHandler}>9. Get Coordinate</button>
-                        <button className={classes.button} onClick={getRouteHandler}>10. Get RouteInfo</button>
-                        <button onClick={openMapHandler} className={classes.button}>11. Naver Map</button>
+                        <button className={classes.button} onClick={getPlacesByKeywordHandler}>7. Get Places By Keyword</button>
+                        <button className={classes.button} onClick={convertToCoordinateHandler}>8. Get Coordinate</button>
+                        <button className={classes.button} onClick={getRouteHandler}>9. Get RouteInfo</button>
+                        <button onClick={openMapHandler} className={classes.button}>10. Naver Map</button>
                     </div>
                 </div>
             </div>
