@@ -52,10 +52,10 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">홈</Nav.Link>
-              <Nav.Link as={Link} to="/place">반려동물 동반 장소</Nav.Link>
+              <Nav.Link as={Link} to="/place">반려동물과 함께</Nav.Link>
               <Nav.Link as={Link} to="/chat">그룹 채팅방</Nav.Link>
-              <Nav.Link as={Link} to="/ai/chat">AI 채팅</Nav.Link>
-              <Nav.Link as={Link} to="/diagnosis">AI 진단</Nav.Link>
+              <Nav.Link as={Link} to="/ai/chat">AI 챗봇</Nav.Link>
+              <Nav.Link as={Link} to="/diagnosis">AI 건강 진단</Nav.Link>
               <Nav.Link as={Link} to="/me">마이페이지</Nav.Link>
               <Nav.Link onClick={logoutHandler}>로그아웃</Nav.Link> 
               {/* <Nav.Link onClick={openAdminPage}>Admin</Nav.Link> */}

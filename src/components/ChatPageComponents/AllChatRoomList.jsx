@@ -138,7 +138,11 @@ const AllChatRoomList = (props) => {
         <React.Fragment>
             {isSubmit && <Loading/>}
             <div className={classes.all_chatRoom_container}>
-                <h2 className={classes.chatRoom_header_text}>ChatRooms</h2>
+                <h2 className={classes.chatRoom_header_text}>그룹 채팅방</h2>
+                <div className={classes.chatRoom_description}>
+                    다양한 반려동물 주제별 채팅방에서 사용자들과 실시간으로 소통하세요. <br/>
+                    궁금한 점, 정보 공유, 경험담 등을 나눌 수 있습니다.
+                </div>
                 <div className={classes.buttonContainer}>
                     <motion.button 
                         whileHover={{ scale : 1.05 }}

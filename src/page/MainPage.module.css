@@ -1,0 +1,318 @@
+body {
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.mainHeaderSection {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #f8f8f8;
+}
+
+.imgSection {
+    width: 100%;
+    height: auto;
+    position: relative;
+    flex: 0.6;
+}
+
+.mainImage {
+    width: 100%;
+}
+
+.mainSection {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Description */
+.descriptionContainer {
+    padding-top: 30px;
+    width: 40%;
+    flex: 0.4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.descriptionMainHeader {
+    font-family: "Playwrite NZ", cursive;
+    font-weight: bold;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin-bottom: 50px;
+    color: #453fb2;
+    text-align: center;
+}
+
+.descriptionSubHeader {
+    color: #453fb2;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.descriptionMainText {
+    text-align: center;
+    color: #090d00;
+    font-weight: bold;
+    font-size: 14px;
+    opacity: 0.8;
+    word-break: keep-all;
+}
+
+/* Info Cards */
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 40px;
+    border-top: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+}
+
+.infoCard {
+    height: 150px;
+    flex: 1;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+.infoCard h6 {
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.infoCard p {
+    font-size: 14px;
+    word-break: keep-all;
+}
+
+.infoCard:hover {
+    background-color: #453fb2;
+    color: white;
+}
+/* Main Section Cards */
+.sectionDescription {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+.sectionCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding-bottom: 60px;
+}
+.mainCardIcon{
+    margin:0 auto;
+    margin-bottom: 10px;
+}
+.mainCard {
+    width: 280px;
+    background-color: #453fb2;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px #3333;
+    text-align: center;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+.mainCardTitle {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.mainCardDescription {
+    color: white;
+    font-size: 14px;
+    margin: 20px 0;
+    flex-grow: 1;
+}
+
+.mainCard a {
+    align-self: flex-start;
+    text-decoration: none;
+    color: #453fb2;
+    background-color: white;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.mainCard:hover {
+    transform: translateY(-15px);
+    border-radius: 24px;
+}
+.secondSection{
+    background-color:  #F3F8F8;
+    padding-top: 20px;
+}
+.cardCommon {
+    width: 300px;
+    height: 300px;
+    background-color: #e39900;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px #3333;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+.cardCommon:hover {
+    transform: scale(1.05);
+}
+.cardCommon h4 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+.cardCommon p {
+    color: white;
+    font-size: 14px;
+    word-break: keep-all;
+    opacity: 0.9;
+}
+.cardCommon button {
+    padding: 10px;
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    background-color: white;
+    color: #e39900;
+    cursor: pointer;
+}
+.thirdSection{
+    margin-bottom: 70px;
+}
+/* Post & Info Section */
+.postContainer {
+    width:100%;
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.postWrapper,
+.myInfoWrapper {
+    width:350px;
+    background-color: #ffffff;
+    padding:30px 0;
+    cursor: pointer;
+    height:200px;
+}
+
+.postWrapper {
+    border-top: 1px solid #453fb2;
+    border-bottom: 1px solid #453fb2;
+    border-left: 1px solid #453fb2;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.myInfoWrapper{
+    border: 1px solid #453fb2;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.postWrapper h4,
+.myInfoWrapper h4 {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.postWrapper p,
+.myInfoWrapper p {
+    font-size:14px;
+    text-align: center;
+    word-break: keep-all;
+    opacity: 0.8;
+}
+
+.postWrapper:hover,
+.myInfoWrapper:hover {
+    color:white !important;
+    background-color: #453fb2;
+}
+
+/* API Section */
+.apiSection {
+    background-color: #F3F8F8;
+    padding:30px 0;
+    text-align: center;
+}
+
+.apiList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.apiContainer {
+    width: 230px;
+    background-color: white;
+    border-top: 3px solid #453fb2;
+    box-shadow: 0 4px 8px #a59c9c33;
+    padding-bottom: 20px;
+    border-radius: 12px;
+}
+
+.apiTitle {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 16px 0;
+    border-bottom: 2px solid #453fb2;
+    font-style: italic;
+    color: #453fb2;
+}
+
+.apiText {
+    font-size: 14px;
+    padding: 20px;
+    color: #555;
+    word-break: keep-all;
+}
+
+.apiLinkContainer {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.apiLink {
+    font-size: 12px;
+    margin: 6px 0;
+    display: block;
+}
+
+.sectionHeader {
+    font-size: 48px;
+    font-weight: bold;
+    color: #e45735;
+    text-shadow: 0 0 80px rgba(240, 0, 0, 0.5);
+    margin-bottom: 40px;
+    margin-top: 60px;
+    text-align: center;
+}
