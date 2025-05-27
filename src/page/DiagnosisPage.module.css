@@ -1,0 +1,115 @@
+.pageWrapper {
+  width:90%;
+  padding-top: 60px;
+  margin:0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f4ff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 60px;
+  margin-top: 60px;
+}
+
+.pageTitle {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color:#3d347a;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.pageDescription {
+  font-size: 18px;
+  text-align: center;
+  color: #444;
+  margin-top: 30px;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background-color: #e3e0f8;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 360px;
+  height:600px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card.selected {
+  border: 1px solid #3d347a;
+  transform: scale(1.02);
+}
+
+.card img {
+  width: 220px;
+  height:220px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color:#3d347a;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  margin-top: 20px;
+}
+
+.card ul.details {
+  padding:0;
+  text-align: left;
+  padding-left: 30px;
+  list-style: none;
+  color: #3d347a;
+  font-weight: bold;
+  line-height: 1.4;
+  margin-top: 30px;
+}
+.details li {
+  margin:5px 0;
+}
+.dogDetail, .catDetail{
+  text-align: left;
+  padding-left: 10px;
+  word-break: keep-all;
+  font-size: 15px;
+  font-weight: bold;
+  margin:20px 0;
+}
+.detailHighlight{
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  color:#3d347a;
+  font-weight: bold;
+  gap:3px;
+}

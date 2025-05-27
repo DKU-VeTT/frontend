@@ -1,0 +1,136 @@
+.container {
+  max-width: 500px;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  color:#3d347a;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 10px;
+}
+.required{
+  color:red;
+  font-weight: bold;
+}
+.dropZone {
+  padding: 1.5rem;
+  border: 2px dashed #aaa;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fafafa;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.dragOver {
+  background-color: #e8f0fe;
+  border-color: #3d347a;
+}
+
+.dropText {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.previewImage {
+  max-width:300px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.button {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #3d347a;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.textarea {
+  width: 100%;
+  resize: none;
+  padding:10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.textarea:focus {
+  border-color: #3d347a;
+  outline: none;
+}
+.resultBox {
+  background-color: #fdfdfd;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  line-height: 1.6;
+}
+
+.resultTitle {
+  color:#3d347a;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom:30px;
+}
+.resultImage{
+  width:135px;
+  height:135px;
+  border-radius: 12px;
+}
+.resultInfo{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  gap: 30px;  
+}
+.resultDetail {
+  display: flex;
+  align-items: center;
+  padding:10px 0;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+.markdown {
+  font-size: 14px;
+  color: #333;
+  margin-top: 30px;
+  word-break: keep-all;
+}
+.noSymptomContent{
+   font-size: 14px;
+  color: #333;
+  margin-top: 30px;
+  word-break: keep-all;
+  text-align: center;
+}
+

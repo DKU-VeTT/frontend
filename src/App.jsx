@@ -9,6 +9,7 @@ import SocialKakao from './components/AuthPageComponents/SocialKakao';
 import SocialNaver from './components/AuthPageComponents/SocialNaver';
 import PlacePage from './page/PlacePage';
 import AIChatPage from './page/AIChatPage';
+import DiagnosisPage from './page/DiagnosisPage';
 import MyPage from './page/MyPage';
 import LoginProvider from './store/LoginProvider';
 import ProtectedRoute from './store/ProtectedRoute';
@@ -56,6 +57,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <PlacePage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path : '/diagnosis',
+    element: (
+      <ProtectedRoute>
+        <DiagnosisPage />
       </ProtectedRoute>
     ),
   },
