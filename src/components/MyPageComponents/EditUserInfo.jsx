@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import loginContext from '../../store/login-context';
 import { getMemberService, editMemberService } from '../../api/MemberService';
 import { toast } from 'react-toastify';
-import classes from "./UserInfo.module.css";
+import classes from "./EditUserInfo.module.css";
 import { CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const userIdRegex = /^[a-zA-Z0-9]{7,30}$/;
 
-const UserInfo = () => {
+const EditUserInfo = ({ onTrigger }) => {
 
     const loginCtx = useContext(loginContext);
 
@@ -126,6 +126,7 @@ const UserInfo = () => {
                         draggable: true,
                         progress: undefined,
                     });
+                    onTrigger();
                     setTouched({});
                 }, 1000)
             }else{
@@ -170,7 +171,6 @@ const UserInfo = () => {
     const fetchUserInfoHandler = async () => {
         
         const memberResponseData = await getMemberService(loginCtx.memberId);
-
         if (memberResponseData.success) {
             const userData = memberResponseData.data;
             let userShowId = userData.userId;
@@ -220,11 +220,6 @@ const UserInfo = () => {
     return (
         <div className={classes.userInfo_container}>
             <div className={classes.container}>
-                <h2 className={classes.userInfo_container_header_text}>User Infomation</h2>
-                <div className={classes.not_edit_container}>
-                    <p>{currentUserInfo.role} 계정</p>
-                    <p>{currentUserInfo.createTime}</p>
-                </div>
                 <motion.div
                     className={classes.user_form}
                     initial={{ opacity: 0 }}
@@ -267,7 +262,7 @@ const UserInfo = () => {
                     {!formData["userId"] && (
                         <>
                             <p className={classes.social_login_id}>
-                                <CheckCircle className={classes.social_icon} color="green" size={20} /> {currentUserInfo.userShowId}
+                                <CheckCircle className={classes.social_icon} color="#3cb371" size={20} /> {currentUserInfo.userShowId}
                             </p> 
                             <p className={classes.social_email}>
                                 연동 계정 : {currentUserInfo.email}
@@ -281,15 +276,17 @@ const UserInfo = () => {
                         whileTap={{ scale: 0.95 }}
                         disabled={checking['formData']}
                     >
-                        {checking['formData'] ? 'Submit...' : '사용자 정보 변경'}
+                        {checking['formData'] ? '변경중...' : '사용자 정보 변경'}
                     </motion.button>
                 </motion.div>
-                {formData["userId"] && (
-                    <Link className={classes.edit_password_link} as={Link} to="/auth?type=4">Forget Password?</Link>
-                )}
-                <p 
-                    onClick={deleteMemberHandler}
-                    className={classes.delete_link}>회원 탈퇴</p>
+                <div className={classes.naviContainer}>
+                    {formData["userId"] && (
+                        <Link className={classes.edit_password_link} as={Link} to="/auth?type=4">Forget Password?</Link>
+                    )}
+                    <p 
+                        onClick={deleteMemberHandler}
+                        className={classes.delete_link}>회원 탈퇴</p>
+                </div>
             </div>
             <AnimatePresence>
                 {showConfirm && (
@@ -335,4 +332,4 @@ const UserInfo = () => {
     );
 };
 
-export default UserInfo;
+export default EditUserInfo;

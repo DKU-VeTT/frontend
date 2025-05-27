@@ -19,6 +19,7 @@
     justify-content: center;
     align-items: center;
     font-family: 'DM Serif Display', serif;
+    color:black;
 }
 .container_text_box{
     position: relative;

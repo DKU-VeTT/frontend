@@ -1,0 +1,64 @@
+.background {
+    margin: 50px 0;
+}
+
+.page {
+    background-color: #10110d;
+    padding: 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    border-radius: 13px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin: 20px 0 50px 0;
+    font-family: "Playwrite NZ", cursive;
+    font-size: 2.5rem;
+}
+
+.selectContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.selectContainer button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.selected {
+    background-color: #3cb371;
+    color: white;
+    border-color: #2e8b57;
+    box-shadow: 0 0 10px rgba(60, 179, 113, 0.5);
+}
+
+.unselected {
+    background-color: transparent;
+    color: #ccc;
+    border-color: #444;
+}
+
+.unselected:hover {
+    background-color: #2f312c;
+    color: white;
+}
+
+.sectionContainer {
+    background-color: #181a16;
+    padding: 2rem;
+    border-radius: 10px;
+    color: white;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+}

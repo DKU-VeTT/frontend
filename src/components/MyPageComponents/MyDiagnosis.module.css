@@ -1,0 +1,15 @@
+.resultContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap:30px;
+}
+.diagnosisHeader{
+    text-align: center;
+    font-weight: bold;
+    color:#10a37f;
+    font-size: 21px;
+}
+.diagnosisContainer{
+    width:500px;
+}

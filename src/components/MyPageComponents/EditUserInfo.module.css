@@ -1,28 +1,9 @@
+
 .userInfo_container{
     display: flex;
     justify-content: center;
-    margin:50px 0 100px 0;
     font-family: "Noto Sans KR", sans-serif !important;
     gap:50px;
-}
-.userInfo_container_header_text{
-    margin:auto;
-    font-size: 28px;
-    font-weight: bold;
-    color: rgb(66, 51, 182);
-    margin-bottom: 30px;
-}
-.container {
-    width:400px;
-    background: linear-gradient(135deg, #ffffff, #f6f0fc);
-    padding:30px;
-    border-top-left-radius: 24px;
-    border-bottom-left-radius: 24px;
-    box-shadow: 0px 12px 35px rgba(120, 80, 200, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-family: "Noto Sans KR", sans-serif !important;
 }
 .not_edit_container{
     color: #5c5a5a;
@@ -91,7 +72,7 @@
     font-weight: bold;
     text-align: center;
     font-size: 14px;
-    color:#5c5a5a;
+    color:white;
 }
 .social_login_id{
     display: flex;
@@ -110,7 +91,7 @@
     border: none;
     padding: 15px 50px;
     border-radius: 8px;
-    background-color: #453fb2;
+    background-color: #3cb371;;
     color: #ffffff;
     cursor: pointer;
 }
@@ -118,29 +99,13 @@
     background-color: #ccc;
     cursor: not-allowed;
 }
-.duplicate_button {
-    background-color: #453fb2;
-    color: white;
-    border: none;
-    width:140px;
-    padding: 15px 12px;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 10px;
-    display: inline-block; 
-}
-.duplicate_button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
 .edit_password_link, .delete_link{
     padding:20px 0;
     margin:auto;
-    color:#453fb2;
+    color:#3cb371;;
     text-align: center;
     text-decoration: none;
+    margin:10px 0;
 }
 .delete_link{
     padding:5px 0;
@@ -222,4 +187,8 @@
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+.naviContainer{
+    margin-top: 20px;
+    text-align: center;
 }
