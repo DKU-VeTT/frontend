@@ -1,0 +1,57 @@
+.overlayBox {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px 16px;
+  max-width: 280px;
+  word-break: break-word;
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.titleBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #888;
+}
+
+.infoItem {
+  margin-bottom: 6px;
+}
+
+@media screen and (max-width: 400px) {
+  .overlayBox {
+    max-width: 90%;
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+.directionButton {
+  background-color: #9575cd;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.directionButton:hover {
+  background-color: #357ab7;
+}

@@ -99,3 +99,36 @@
     background: #0056b3;
   }
   
+  
+@media (max-width: 768px) {
+  .filterForm {
+    width: 90%;
+    height: auto;
+    padding: 16px;
+    margin: 20px auto;
+  }
+
+  .formGroup label {
+    font-size: 14px;
+  }
+
+  .inputField {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  .toggleGroup {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .toggleLabel {
+    font-size: 13px;
+  }
+
+  .submitButton {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+}

@@ -1,0 +1,32 @@
+.emergencyButton {
+  background-color: #9575cd;
+  color: white;
+  font-weight: bold;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.emergencyButton:hover {
+  background-color: #9575cd;
+}
+
+
+@media (max-width: 768px) {
+  .emergencyButton {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .emergencyButton {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
