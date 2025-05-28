@@ -1,11 +1,11 @@
 .searchContainer {
-  width:350px;
-  height:520px;
-  margin:0 20px;
+  width: 350px;
+  height: 520px;
+  margin: 0 20px;
   padding: 24px;
   background: #ffffff;
-  border-radius: 16px; 
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); 
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   font-family: "Noto Sans KR", sans-serif;
   display: flex;
   flex-direction: column;
@@ -69,8 +69,9 @@
   transition: 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
-  gap:10px;
+  gap: 10px;
 }
+
 .placeName {
   flex: 1;
   text-overflow: ellipsis;
@@ -79,17 +80,72 @@
 }
 
 .regionCode {
-  text-align: right; 
-  color: #888; 
+  text-align: right;
+  color: #888;
 }
+
 .resultItem:hover {
   background: #f0f0f0;
 }
 
-.noResultsText,.loadingText, .errorText {
+.noResultsText,
+.loadingText,
+.errorText {
   text-align: center;
   color: #453fb2;
   font-weight: bold;
-  margin:140px 0 0 0;
+  margin: 140px 0 0 0;
 }
 
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .searchContainer {
+    width: 90%;
+    height: auto;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .searchInput {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .resultsContainer {
+    height: auto;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .resultItem {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .noResultsText,
+  .loadingText,
+  .errorText {
+    margin: 100px 0 0 0;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchInput {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .resultItem {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .placeName {
+    font-size: 13px;
+  }
+
+  .regionCode {
+    font-size: 12px;
+  }
+}
