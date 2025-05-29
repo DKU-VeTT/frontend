@@ -14,7 +14,9 @@ import classes from './PlacePage.module.css';
 const DEFAULT_COORDINATE = { latitude: 37.3211, longitude: 127.1325 };
 
 const PlacePage = () => {
-  const [center, setCenter] = useState(null);
+  const [myLocation, setMyLocation] = useState(DEFAULT_COORDINATE); // 내 위치 마커용
+  const [mapCenter, setMapCenter] = useState(DEFAULT_COORDINATE);   // 지도 중심 이동용
+
   const [places, setPlaces] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isKeywordOpen, setIsKeywordOpen] = useState(false);
@@ -38,12 +40,14 @@ const PlacePage = () => {
           latitude: pos.coords.latitude,
           longitude: pos.coords.longitude
         };
-        setCenter(coord);
+        setMyLocation(coord);        // 마커 위치 갱신
+        setMapCenter(coord);         // 지도 중심 이동
         fetchNearbyPlaces(coord);
         setIsLocationModalOpen(false);
       },
       () => {
-        setCenter(DEFAULT_COORDINATE);
+        setMyLocation(DEFAULT_COORDINATE);
+        setMapCenter(DEFAULT_COORDINATE);
         fetchNearbyPlaces(DEFAULT_COORDINATE);
         setIsLocationModalOpen(false);
       }
@@ -51,7 +55,8 @@ const PlacePage = () => {
   };
 
   const handleDenyLocation = () => {
-    setCenter(DEFAULT_COORDINATE);
+    setMyLocation(DEFAULT_COORDINATE);
+    setMapCenter(DEFAULT_COORDINATE);
     fetchNearbyPlaces(DEFAULT_COORDINATE);
     setIsLocationModalOpen(false);
   };
@@ -70,12 +75,12 @@ const PlacePage = () => {
       </Modal>
 
       <div className={classes.button_panel}>
-        <EmergencyButton center={center} onSetPlaces={(p) => setPlaces(p.slice(0, 50))} />
+        <EmergencyButton center={myLocation} onSetPlaces={(p) => setPlaces(p.slice(0, 50))} />
         <button onClick={() => setIsFilterOpen(true)}>필터 선택</button>
         <button onClick={() => setIsKeywordOpen(true)}>주소 입력</button>
       </div>
 
-      <PlaceMap coordinate={center} places={places} />
+      <PlaceMap coordinate={mapCenter} myLocation={myLocation} places={places} />
 
       <Modal isOpen={isFilterOpen} onClose={() => setIsFilterOpen(false)}>
         <FilterForm
@@ -89,7 +94,7 @@ const PlacePage = () => {
       <Modal isOpen={isKeywordOpen} onClose={() => setIsKeywordOpen(false)}>
         <KeywordForm
           onSelectPlace={(place) => {
-            setCenter({ latitude: place.latitude, longitude: place.longitude });
+            setMapCenter({ latitude: place.latitude, longitude: place.longitude });
             setPlaces([place]);
             setIsKeywordOpen(false);
           }}

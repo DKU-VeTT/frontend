@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './PlaceInfoOverlay.module.css';
 
-const PlaceInfoOverlay = ({ place, onClose, currentCenter }) => {
+const PlaceInfoOverlay = ({ place, onClose, myLocation }) => {
   const {
     placeName, category, address, operatingInfo,
     isParking, isInside, isOutside, phoneNumber, holidayInfo
@@ -32,8 +32,8 @@ const PlaceInfoOverlay = ({ place, onClose, currentCenter }) => {
 
           const naverMapURL = "http://map.naver.com/index.nhn?";
  
-          const slng = currentCenter?.longitude;
-          const slat = currentCenter?.latitude;
+          const slng = myLocation?.longitude;
+          const slat = myLocation?.latitude;
           const elng = place.longitude;
           const elat = place.latitude;
           const etext = place.placeName;
