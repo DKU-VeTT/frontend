@@ -19,7 +19,7 @@ const categoryToImage = {
   '반려동물용품': petstoreImg,
 };
 
-const PlaceMap = ({ coordinate, places }) => {
+const PlaceMap = ({ coordinate, myLocation ,places }) => {
   const mapRef = useRef(null);
   const [level, setLevel] = useState(4);
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -58,7 +58,7 @@ const PlaceMap = ({ coordinate, places }) => {
           ref={mapRef}
           className={classes.map}
         >
-          <MapMarker position={{ lat: coordinate.latitude, lng: coordinate.longitude }} />
+          <MapMarker position={{ lat: myLocation.latitude, lng: myLocation.longitude }} />
 
           {places.map((place, idx) => (
             <React.Fragment key={place.id || `${place.latitude}-${place.longitude}-${idx}`}>
@@ -82,7 +82,7 @@ const PlaceMap = ({ coordinate, places }) => {
 
           {selectedPlace && (
             <CustomOverlayMap position={{ lat: selectedPlace.latitude, lng: selectedPlace.longitude }}>
-              <PlaceInfoOverlay place={selectedPlace} onClose={() => setSelectedPlace(null)} currentCenter={coordinate} />
+              <PlaceInfoOverlay place={selectedPlace} onClose={() => setSelectedPlace(null)} myLocation={myLocation} />
             </CustomOverlayMap>
           )}
 
