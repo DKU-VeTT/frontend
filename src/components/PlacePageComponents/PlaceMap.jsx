@@ -19,7 +19,7 @@ const categoryToImage = {
   '반려동물용품': petstoreImg,
 };
 
-const PlaceMap = ({ coordinate, myLocation ,places }) => {
+const PlaceMap = ({ coordinate, myLocation ,places, onSelectRoadView }) => {
   const mapRef = useRef(null);
   const [level, setLevel] = useState(4);
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -82,7 +82,7 @@ const PlaceMap = ({ coordinate, myLocation ,places }) => {
 
           {selectedPlace && (
             <CustomOverlayMap position={{ lat: selectedPlace.latitude, lng: selectedPlace.longitude }}>
-              <PlaceInfoOverlay place={selectedPlace} onClose={() => setSelectedPlace(null)} myLocation={myLocation} />
+              <PlaceInfoOverlay place={selectedPlace} onClose={() => setSelectedPlace(null)} myLocation={myLocation} onSelectRoadView={onSelectRoadView} />
             </CustomOverlayMap>
           )}
 

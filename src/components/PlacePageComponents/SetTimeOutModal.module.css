@@ -1,0 +1,22 @@
+
+.modal_container {
+  position: fixed;
+  width: 220px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+  padding: 14px 12px;
+  background-color: #885bc1;
+  border-radius: 8px;
+  z-index: 2000;
+  text-align: center;
+}
+
+.flex_box {
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
