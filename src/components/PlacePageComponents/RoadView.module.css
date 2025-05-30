@@ -1,0 +1,47 @@
+.roadviewContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 12px;
+  max-width: 100%;
+}
+
+.mapArea {
+  width: 40%;
+  height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.viewArea {
+  width: 60%;
+  height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.viewer {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: #f0f0f0;
+}
+
+
+@media screen and (max-width: 768px) {
+  .roadviewContainer {
+    flex-direction: column;
+  }
+
+  .mapArea,
+  .viewArea {
+    width: 100%;
+    height: 250px;
+  }
+}

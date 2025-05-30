@@ -8,12 +8,14 @@ import FilterForm from '../components/PlacePageComponents/FilterForm';
 import KeywordForm from '../components/PlacePageComponents/KeywordForm';
 import Modal from '../components/PlacePageComponents/PlaceModal';
 import { getOpenPlacesByCategoryAndDistService } from '../api/PlaceService';
+import RoadView from '../components/PlacePageComponents/RoadView';
 
 import classes from './PlacePage.module.css';
 
 const DEFAULT_COORDINATE = { latitude: 37.3211, longitude: 127.1325 };
 
 const PlacePage = () => {
+  const [roadViewPlace, setRoadViewPlace] = useState(null);//로드뷰 상태
   const [myLocation, setMyLocation] = useState(DEFAULT_COORDINATE); // 내 위치 마커용
   const [mapCenter, setMapCenter] = useState(DEFAULT_COORDINATE);   // 지도 중심 이동용
 
@@ -80,7 +82,7 @@ const PlacePage = () => {
         <button onClick={() => setIsKeywordOpen(true)}>주소 입력</button>
       </div>
 
-      <PlaceMap coordinate={mapCenter} myLocation={myLocation} places={places} />
+      <PlaceMap coordinate={mapCenter} myLocation={myLocation} places={places} onSelectRoadView={setRoadViewPlace} />
 
       <Modal isOpen={isFilterOpen} onClose={() => setIsFilterOpen(false)}>
         <FilterForm
@@ -100,6 +102,14 @@ const PlacePage = () => {
           }}
         />
       </Modal>
+
+       {/*로드뷰 영역: 오른쪽 고정 위치 */}
+      {roadViewPlace && (
+        <div className={classes.roadviewOverlay}>
+          <button className={classes.closeRoadview} onClick={() => setRoadViewPlace(null)}>✕</button>
+          <RoadView location={{ latitude: roadViewPlace.latitude, longitude: roadViewPlace.longitude }} />
+        </div>
+      )}
 
       <Footer />
     </div>
